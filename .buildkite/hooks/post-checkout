@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${PB3255_HISTORY_FAULT:-}" == "1" ]]; then
+  git fetch --depth=1 origin "$BUILDKITE_COMMIT"
+  printf 'PB3255_CONTROLLED_HISTORY_FAULT:shallow=%s:head=%s\n' "$(git rev-parse --is-shallow-repository)" "$(git rev-parse HEAD)"
+fi
