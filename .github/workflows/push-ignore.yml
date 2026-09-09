@@ -1,0 +1,14 @@
+name: push-ignore
+on:
+  push:
+    branches: ["lab/push-ignore"]
+    paths-ignore: ["docs/**"]
+jobs:
+  marker:
+    name: push-ignore marker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute evidence marker
+        run: |
+          printf 'PB3255_EXECUTED:%s:%s\n' 'push-ignore' "$(git rev-parse HEAD)"

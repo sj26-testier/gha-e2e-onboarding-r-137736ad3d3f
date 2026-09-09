@@ -1,0 +1,13 @@
+name: plain
+on:
+  push:
+    branches: ["lab/plain"]
+jobs:
+  marker:
+    name: plain marker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute evidence marker
+        run: |
+          printf 'PB3255_EXECUTED:%s:%s\n' 'plain' "$(git rev-parse HEAD)"

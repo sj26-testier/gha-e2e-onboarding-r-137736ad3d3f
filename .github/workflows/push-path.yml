@@ -1,0 +1,14 @@
+name: push-path
+on:
+  push:
+    branches: ["lab/push-path"]
+    paths: ["src/**"]
+jobs:
+  marker:
+    name: push-path marker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute evidence marker
+        run: |
+          printf 'PB3255_EXECUTED:%s:%s\n' 'push-path' "$(git rev-parse HEAD)"

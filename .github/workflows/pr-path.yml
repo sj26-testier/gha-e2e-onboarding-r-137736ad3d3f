@@ -1,0 +1,15 @@
+name: pr-path
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize]
+    paths: ["src/**"]
+jobs:
+  marker:
+    name: pr-path marker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute evidence marker
+        run: |
+          printf 'PB3255_EXECUTED:%s:%s\n' 'pr-path' "$(git rev-parse HEAD)"
